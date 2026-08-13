@@ -17,8 +17,8 @@ const getAdmin=(obj:Admin)=>{
     return obj
 }
 
-let userInfo=getUser({name:"nikhi",email:"bishnoi@email.com",password:"23232323232444"})
-let adminInfo=getAdmin({name:"nikhi",email:"bishnoi@email.com",password:"23232323232444",admin:false})
+let userInfo=getUser({name:"nikhi",email:"example@example.com",password:"23232323232444"})
+let adminInfo=getAdmin({name:"nikhi",email:"example@example.com",password:"23232323232444",admin:false})
 
 console.log(adminInfo)
 
