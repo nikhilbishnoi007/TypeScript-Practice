@@ -8,7 +8,7 @@ class Device{
         this.model=model;
     }
     deviceInfo(){
-      console.log(`brand_name:${this.brand},device_model:${this.model},device_price: ${this.price}`)
+      console.log(`brand_name:${this.brand} ,device_model:${this.model}, device_price: ${this.price}`)
        
   
     }
@@ -16,7 +16,7 @@ class Device{
 
 }
 
-let d1=new Device("realme",20000,"narzo50 5g")
+let d1=new Device("iphone",70000,"iphone 15")
 d1.deviceInfo()
 
 
