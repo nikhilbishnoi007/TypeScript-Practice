@@ -2,19 +2,23 @@ interface User{
     name:String,
     email:String,
     password:String,
-    age?:Number
+    age?:Number  //optional value 
 }
 
+interface Admin extends User{
+    admin:Boolean
+}
 
 const getUser=(obj:User)=>{
        return obj
 }
 
-let userInfo=getUser({name:"nikhi",email:"bishnoi@email.com",password:"23232323232444"})
+const getAdmin=(obj:Admin)=>{
+    return obj
+}
 
-console.log(userInfo)
+// let userInfo=getUser({name:"nikhi",email:"bishnoi@email.com",password:"23232323232444"})
+let adminInfo=getAdmin({name:"nikhi",email:"bishnoi@email.com",password:"23232323232444",admin:false})
 
-let b=5;
+console.log(adminInfo)
 
-
-console.log(5)
