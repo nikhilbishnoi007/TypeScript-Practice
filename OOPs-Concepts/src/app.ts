@@ -153,8 +153,17 @@ console.log(n1.name)
 n1.name="sinwar"
 console.log(n1.name)
 
+
+
 class Typescript{
     static version="2.5.4.0";
+    static genrateNumber(){
+       return Math.floor(Math.random()*1000000)
+    }
 }
 
+
 console.log(`the version of typescript that you use  is: ${Typescript.version}`)
+console.log( `your otp is: ${Typescript.genrateNumber()}`)
+
+
