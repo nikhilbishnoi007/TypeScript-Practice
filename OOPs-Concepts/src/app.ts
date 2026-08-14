@@ -152,3 +152,9 @@ console.log(n1.name)
 
 n1.name="sinwar"
 console.log(n1.name)
+
+class Typescript{
+    static version="2.5.4.0";
+}
+
+console.log(`the version of typescript that you use  is: ${Typescript.version}`)
