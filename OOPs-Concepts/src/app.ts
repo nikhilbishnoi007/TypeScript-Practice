@@ -1,7 +1,7 @@
 class Device{
-    brand:string; //once we declare the value than we canot change it using readonly keyword
-    price:number;
-    model:string;
+    readonly brand:string; //once we declare the value than we canot change it using readonly keyword
+    readonly price:number;
+    readonly model:string;
     constructor (  brand:string , price:number,  model:string){
         this.brand=brand;
         this.price=price;
@@ -19,9 +19,11 @@ class Device{
 
 
 class HomeDevice {
+      name:string;
       device_Number:number;
-     alldevice:Device[]
-     constructor(){
+      alldevice:Device[]
+     constructor(name:string){
+      this.name=name
       this.alldevice=[]
       this.device_Number=this.alldevice.length
      }
@@ -32,12 +34,12 @@ class HomeDevice {
         
      }
      ShowDevice(){
-        console.log("All device List:-")
+        console.log(`All device List in ${this.name}'s house:-`)
         this.alldevice
           .forEach(d => console.log(`{Brand:${d.brand} Price:${d.price} Model:${d.model}}`));
      }
      TotalDevice(){
-       console.log(`the number of deivce in your house is:${this.device_Number}`)
+       console.log(`the number of deivce in ${this.name}'s house is:${this.device_Number}`)
      }
      
      
@@ -47,13 +49,17 @@ let d1=new Device("google",70000,"pixel 7")
 let d2=new Device("samsung",60000,"z-flip 6")
 let d3=new Device("apple",75000,"iphone 15")
 
-let h1=new HomeDevice()
+let h1=new HomeDevice("nikhil")
+let h2=new HomeDevice("pinky")
 
 h1.addDevice(d1)
 h1.addDevice(d2)
 h1.addDevice(d3)
 h1.TotalDevice()
 h1.ShowDevice()
+h2.addDevice(d3)
+h2.TotalDevice()
+h2.ShowDevice()
 
 
 
