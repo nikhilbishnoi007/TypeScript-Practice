@@ -5,13 +5,9 @@ interface Book {
     isIssued: boolean;
 }
 
-
-
 let Books: Book[] = []
 
-export   function log<T>(value:T){
-    console.log(value)
-}
+
 
 function addBook(title: string, author: string) {
     let id = Books.length + 1
@@ -82,20 +78,6 @@ function SearchBookByTitle(title: string) {
     }
 }
 
-
-
-function  sum(arr:number[],brr:number[]){ 
-    if(arr.length!==brr.length){
-      throw new Error("The length of array is not same")
-    }
- return arr.map((value,index)=>value+brr[index]!)
-}
-
-
-
-
-
-
 addBook("harry potter", "J. K. Rowling")
 addBook("ramayana", "Valmiki")
 addBook("Crime and Punishment", "Fyodor Dostoyevsky")
@@ -104,25 +86,3 @@ getAvailableBook()
 getIssuedBook()
 SearchBookByTitle("harry potter")
 
-
-//learn about generics function and interface
-
-
-
-
-//agar function ke return type T hai to hum sirf wo hi value return kar sake hai jinka type T ho
-function a<T>(a:T):T{
-        return a
-}
-
-log(a<string>("hii"))
-
-// function ab<T>():T{
-//   return "hey"  //yaha par hey string type hai na ki T type typescript wanring show krta hai ki aise return nahi kar sakte hai 
-// }
-// log(ab())
-
-
-let str:unknown="hello"
-let strlength=(str as string).length
-log(strlength)
