@@ -91,15 +91,52 @@ function  sum(arr:number[],brr:number[]){
  return arr.map((value,index)=>value+brr[index]!)
 }
 
-// addBook("harry potter", "J. K. Rowling")
-// addBook("ramayana", "Valmiki")
-// addBook("Crime and Punishment", "Fyodor Dostoyevsky")
-// issuedBook(2)
-// getAvailableBook()
-// getIssuedBook()
-// SearchBookByTitle("harry potter")
-let sumofNumber=sum([1,5,3,4,6,6,7,8],[2,3,4,4,3,33,43,49])
 
-log(sumofNumber)
 
-log(2+3)
+
+
+
+addBook("harry potter", "J. K. Rowling")
+addBook("ramayana", "Valmiki")
+addBook("Crime and Punishment", "Fyodor Dostoyevsky")
+issuedBook(2)
+getAvailableBook()
+getIssuedBook()
+SearchBookByTitle("harry potter")
+
+
+//learn about generics function and interface
+
+type a=number|string;
+interface User<T>{
+    name:string;
+    email:string;
+    password:string;
+    key:T
+}
+
+function object(obj:User<a>){
+    log(obj)
+}
+function object2(obj:User<a>){
+    log(obj)
+}
+const key=()=>{
+   let id=Math.floor(Math.random()*100)
+   return id
+}
+object({name:"nikhil",email:"examaple.com",password:"123dffdf",key:key()})
+object2({name:"bishnoi",email:"bishnoi.com",password:"fjdre3438d",key:key()})
+
+
+//agar function ke return type T hai to hum sirf wo hi value return kar sake hai jinka type T ho
+function a<T>(a:T):T{
+        return a
+}
+
+log(a<string>("hii"))
+
+// function ab<T>():T{
+//   return "hey"  //yaha par hey string type hai na ki T type typescrip wanring show krta hai ki aise return nahi kar sakte hai 
+// }
+// log(ab())
