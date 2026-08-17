@@ -16,7 +16,7 @@ interface Res {
     data?: object
 }
 
-export async function register(req: Request<{}, {}, ReqBody>, res: Response<Res>) {
+export const register=async (req: Request<{}, {}, ReqBody>, res: Response<Res>)=> {
     const { name, email, password } = req.body;
     let isAlreadyRegister = await userModel.findOne({
         $or: [
@@ -51,7 +51,7 @@ export async function register(req: Request<{}, {}, ReqBody>, res: Response<Res>
 
 }
 
-export async function login(req: Request<{}, {}, ReqBody>, res: Response<Res>) {
+export const login=async(req: Request<{}, {}, ReqBody>, res: Response<Res>)=> {
     const { email, password } = req.body
     const user=await userModel.findOne({email:email})
     if(!user){
@@ -82,7 +82,7 @@ res.status(200).json({
 
 }
 
-export async function logout(req:Request<{},{},ReqBody>,res:Response<Res>){
+export const logout=async(req:Request<{},{},ReqBody>,res:Response<Res>)=>{
     const token=req.cookies.token
     if(!token){
         return res.status(400).json({
