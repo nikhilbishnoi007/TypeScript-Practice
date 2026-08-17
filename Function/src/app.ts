@@ -4,7 +4,15 @@ interface Book {
     author: string;
     isIssued: boolean;
 }
+function log<T>(value:T){
+    console.log(value)
+}
+
+
 let Books: Book[] = []
+
+
+
 function addBook(title: string, author: string) {
     let id = Books.length + 1
     let newtitle=title.split(" ").map((t)=>{
@@ -92,4 +100,6 @@ function  sum(arr:number[],brr:number[]){
 // SearchBookByTitle("harry potter")
 let sumofNumber=sum([1,5,3,4,6,6,7,8],[2,3,4,4,3,33,43,49])
 
-console.log(sumofNumber)
+log(sumofNumber)
+
+log(2+3)
