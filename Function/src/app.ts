@@ -75,13 +75,21 @@ function SearchBookByTitle(title: string) {
 }
 
 
-addBook("harry potter", "J. K. Rowling")
-addBook("ramayana", "Valmiki")
-addBook("Crime and Punishment", "Fyodor Dostoyevsky")
-issuedBook(2)
-getAvailableBook()
-getIssuedBook()
-SearchBookByTitle("harry potter")
-SearchBookByTitle("RamayaNA")
 
+function  sum(arr:number[],brr:number[]){ 
+    if(arr.length!==brr.length){
+      throw new Error("The length of array is not same")
+    }
+ return arr.map((value,index)=>value+brr[index]!)
+}
 
+// addBook("harry potter", "J. K. Rowling")
+// addBook("ramayana", "Valmiki")
+// addBook("Crime and Punishment", "Fyodor Dostoyevsky")
+// issuedBook(2)
+// getAvailableBook()
+// getIssuedBook()
+// SearchBookByTitle("harry potter")
+let sumofNumber=sum([1,5,3,4,6,6,7,8],[2,3,4,4,3,33,43,49])
+
+console.log(sumofNumber)
