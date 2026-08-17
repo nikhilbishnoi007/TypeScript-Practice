@@ -4,14 +4,14 @@ interface Book {
     author: string;
     isIssued: boolean;
 }
-function log<T>(value:T){
-    console.log(value)
-}
+
 
 
 let Books: Book[] = []
 
-
+export   function log<T>(value:T){
+    console.log(value)
+}
 
 function addBook(title: string, author: string) {
     let id = Books.length + 1
@@ -107,26 +107,7 @@ SearchBookByTitle("harry potter")
 
 //learn about generics function and interface
 
-type a=number|string;
-interface User<T>{
-    name:string;
-    email:string;
-    password:string;
-    key:T
-}
 
-function object(obj:User<a>){
-    log(obj)
-}
-function object2(obj:User<a>){
-    log(obj)
-}
-const key=()=>{
-   let id=Math.floor(Math.random()*100)
-   return id
-}
-object({name:"nikhil",email:"examaple.com",password:"123dffdf",key:key()})
-object2({name:"bishnoi",email:"bishnoi.com",password:"fjdre3438d",key:key()})
 
 
 //agar function ke return type T hai to hum sirf wo hi value return kar sake hai jinka type T ho
@@ -140,3 +121,8 @@ log(a<string>("hii"))
 //   return "hey"  //yaha par hey string type hai na ki T type typescript wanring show krta hai ki aise return nahi kar sakte hai 
 // }
 // log(ab())
+
+
+let str:unknown="hello"
+let strlength=(str as string).length
+log(strlength)
