@@ -137,6 +137,6 @@ function a<T>(a:T):T{
 log(a<string>("hii"))
 
 // function ab<T>():T{
-//   return "hey"  //yaha par hey string type hai na ki T type typescrip wanring show krta hai ki aise return nahi kar sakte hai 
+//   return "hey"  //yaha par hey string type hai na ki T type typescript wanring show krta hai ki aise return nahi kar sakte hai 
 // }
 // log(ab())
