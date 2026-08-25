@@ -114,12 +114,15 @@ export const logout=async(req:Request<{},{},ReqBody>,res:Response<Res>)=>{
 export const search=async(req:Request<{},{},SearchBody>,res:Response<Res>)=>{
           const {value}=req.body;
 <<<<<<< HEAD
+<<<<<<< HEAD
           if(value==""){
             return res.status(404).json({
                 message:"Provide a validn name",
                 success:false
             })
           }
+=======
+>>>>>>> parent of 159064e (security changes)
           const user=await userModel.findOne({name:{$regex:value,$options:"i"}})
 =======
           const user=await userModel.find({name:{$regex:value,$options:"i"}})
