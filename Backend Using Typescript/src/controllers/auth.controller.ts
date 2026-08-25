@@ -113,6 +113,7 @@ export const logout=async(req:Request<{},{},ReqBody>,res:Response<Res>)=>{
 
 export const search=async(req:Request<{},{},SearchBody>,res:Response<Res>)=>{
           const {value}=req.body;
+<<<<<<< HEAD
           if(value==""){
             return res.status(404).json({
                 message:"Provide a validn name",
@@ -120,6 +121,9 @@ export const search=async(req:Request<{},{},SearchBody>,res:Response<Res>)=>{
             })
           }
           const user=await userModel.findOne({name:{$regex:value,$options:"i"}})
+=======
+          const user=await userModel.find({name:{$regex:value,$options:"i"}})
+>>>>>>> parent of cc86e85 (make a db query changes)
           if(!user){
             return res.status(404).json({
                 message:"user not found",
