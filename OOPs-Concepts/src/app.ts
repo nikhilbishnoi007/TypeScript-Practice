@@ -51,8 +51,8 @@
 // let d2=new Device("samsung",60000,"z-flip 6")
 // let d3=new Device("apple",75000,"iphone 15")
 
-// let h1=new HomeDevice("nikhil")
-// let h2=new HomeDevice("pinky")
+// let h1=new HomeDevice("user1")
+// let h2=new HomeDevice("user2")
 
 // h1.addDevice(d1)
 // h1.addDevice(d2)
