@@ -15,6 +15,9 @@ interface Res {
     success: boolean,
     data?: object
 }
+interface SearchBody{
+    value:string
+}
 
 export const register=async (req: Request<{}, {}, ReqBody>, res: Response<Res>)=> {
     const { name, email, password } = req.body;
@@ -106,4 +109,20 @@ export const logout=async(req:Request<{},{},ReqBody>,res:Response<Res>)=>{
         message:"logout successfully",
         success:true
     })
+}
+
+export const search=async(req:Request<{},{},SearchBody>,res:Response<Res>)=>{
+          const {value}=req.body;
+          const user=await userModel.find({name:{$regex:value,$options:"i"}})
+          if(!user){
+            return res.status(404).json({
+                message:"user not found",
+                success:false
+            })
+          }
+          res.status(200).json({
+            message:"user found",
+            success:true,
+            data:user
+          })
 }
