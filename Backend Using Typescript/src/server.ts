@@ -1,7 +1,6 @@
 import { app } from "./app";
 import connectDb from "./config/db";
 import config from "./config/config";
-import { error } from "node:console";
 
 const port=config.PORT
 
