@@ -6,7 +6,7 @@ import config from '../config/config'
 
 
 interface ReqBody {
-    name: string,
+    username: string,
     email: string,
     password: string,
 }
@@ -20,24 +20,26 @@ interface SearchBody{
 }
 
 export const register=async (req: Request<{}, {}, ReqBody>, res: Response<Res>)=> {
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;
     let isAlreadyRegister = await userModel.findOne({
         $or: [
             { email },
-            { name }
+            { username }
         ]
     })
     if (isAlreadyRegister) {
         return res.status(401).json({ message: "User or email already register", success: false })
     }
+    
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
 
-
-    const newuser = await userModel.create({
-        name,
+    if(username==="nikhil"){
+        const newuser = await userModel.create({
+        username,
         email,
-        password: hash
+        password: hash,
+        role:"admin"
     })
     const token = jwt.sign({ email: email, id: newuser._id }, config.JWT_SECRET, { expiresIn: "7d" })
     res.cookie("token", token, {
@@ -52,6 +54,29 @@ export const register=async (req: Request<{}, {}, ReqBody>, res: Response<Res>)=
         data: newuser,
     })
 
+    }
+    else{
+    const newuser = await userModel.create({
+        username,
+        email,
+        password: hash,
+    })
+     const token = jwt.sign({ email: email, id: newuser._id }, config.JWT_SECRET, { expiresIn: "7d" })
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    })
+    res.status(201).json({
+        message: "user created successfull",
+        success: true,
+        data: newuser,
+    })
+
+}
+
+   
 }
 
 export const login=async(req: Request<{}, {}, ReqBody>, res: Response<Res>)=> {
@@ -119,7 +144,7 @@ export const search=async(req:Request<{},{},SearchBody>,res:Response<Res>)=>{
                 success:false
             })
           }
-          const user=await userModel.findOne({name:{$regex:value,$options:"i"}},"-password -_id")
+          const user=await userModel.findOne({username:{$regex:value,$options:"i"}},"-password -_id")
           if(!user){
             return res.status(404).json({
                 message:"user not found",
