@@ -119,7 +119,7 @@ export const search=async(req:Request<{},{},SearchBody>,res:Response<Res>)=>{
                 success:false
             })
           }
-          const user=await userModel.findOne({name:{$regex:value,$options:"i"}})
+          const user=await userModel.findOne({name:{$regex:value,$options:"i"}},"-password -_id")
           if(!user){
             return res.status(404).json({
                 message:"user not found",
