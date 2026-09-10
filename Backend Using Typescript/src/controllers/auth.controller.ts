@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import userModel from '../models/user.model'
 import config from '../config/config'
+import { genrateaccessToken,genraterefreshToken } from '../utils/genrateToken.utils'
 
 
 interface ReqBody {
@@ -13,7 +14,8 @@ interface ReqBody {
 interface Res {
     message: string,
     success: boolean,
-    data?: object
+    data?: object;
+    accessToken?:string
 }
 interface SearchBody{
     value:string
@@ -39,8 +41,11 @@ export const register=async (req: Request<{}, {}, ReqBody>, res: Response<Res>)=
         password: hash,
         role:"admin"
     })
-    const token = jwt.sign({ email: email, id: newuser._id }, config.JWT_SECRET, { expiresIn: "7d" })
-    res.cookie("token", token, {
+    const refreshToken = genraterefreshToken(newuser)
+    const accessToken=genrateaccessToken(newuser)
+    newuser.refreshToken=refreshToken
+    await newuser.save()
+    res.cookie("refreshtoken", refreshToken, {
         httpOnly: true,
         secure: false,
         sameSite: "lax",
@@ -50,6 +55,7 @@ export const register=async (req: Request<{}, {}, ReqBody>, res: Response<Res>)=
         message: "user registred successfully",
         success: true,
         data: newuser,
+        accessToken
     })
    
 }
@@ -70,8 +76,8 @@ export const login=async(req: Request<{}, {}, ReqBody>, res: Response<Res>)=> {
         success:false
     })
    }
-   const token=jwt.sign({email:email,id:user._id},config.JWT_SECRET,{expiresIn:"7d"})
-  res.cookie("token",token,{
+   const  refreshToken=genraterefreshToken(user)
+  res.cookie("refreshtoken", refreshToken,{
     httpOnly:true,
     secure:false,
     sameSite:"lax",
@@ -87,7 +93,7 @@ res.status(200).json({
 
 export const logout=async(req:Request<{},{},ReqBody>,res:Response<Res>)=>{
 
-    res.clearCookie("token",{
+    res.clearCookie("refreshtoken",{
         httpOnly:true,
         secure:false,
         sameSite:"lax"

@@ -17,7 +17,7 @@ export const isAdmin=async(req:Request,res:Response<Res>,next:NextFunction)=>{
         success:false
     })
 }
-const decoded=jwt.verify(token,config.JWT_SECRET) as JwtPayload
+const decoded=jwt.verify(token,config.ACCESS_TOKEN_SECRET) as JwtPayload
 const user=await userModel.findById(decoded.id as string)
 if(!user){
     return res.status(404).json({

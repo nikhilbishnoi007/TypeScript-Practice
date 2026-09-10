@@ -7,13 +7,17 @@ if(!process.env.MONGO_DB_URI){
 if(!process.env.PORT){
     throw new Error ("port doesn't provided")
 }
-if(!process.env.JWT_SECERET){
-    throw new Error("jwt secret not provided")
+if(!process.env.ACCESS_TOKEN_SECRET){
+    throw new Error("access token secret not provided")
+}
+if(!process.env.REFRESH_TOKEN_SECRET){
+    throw new Error("refresh token secret not provided")
 }
 const config={
  PORT:process.env.PORT,
  MONGO_DB:process.env.MONGO_DB_URI,
- JWT_SECRET:process.env.JWT_SECERET
+ ACCESS_TOKEN_SECRET:process.env.ACCESS_TOKEN_SECRET,
+ REFESH_TOKEN_SECRET:process.env.REFRESH_TOKEN_SECRET
 }
 
 export default config

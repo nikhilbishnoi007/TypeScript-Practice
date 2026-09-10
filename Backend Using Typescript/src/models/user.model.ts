@@ -4,7 +4,8 @@ interface User extends Document{
     username:string,
     email:string,
     password:string,
-    role:string
+    role:string,
+    refreshToken:string,
 }
 
 const userSchema=new Schema<User>({
@@ -25,6 +26,9 @@ const userSchema=new Schema<User>({
     role:{
         type:String,
         default:"user"
+    },
+    refreshToken:{
+        type:String
     }
 })
 
