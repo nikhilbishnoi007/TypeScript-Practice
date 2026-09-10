@@ -33,8 +33,6 @@ export const register=async (req: Request<{}, {}, ReqBody>, res: Response<Res>)=
     
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
-
-    if(username==="nikhil"){
         const newuser = await userModel.create({
         username,
         email,
@@ -49,33 +47,10 @@ export const register=async (req: Request<{}, {}, ReqBody>, res: Response<Res>)=
         maxAge: 7 * 24 * 60 * 60 * 1000
     })
     res.status(201).json({
-        message: "user created successfull",
+        message: "user registred successfully",
         success: true,
         data: newuser,
     })
-
-    }
-    else{
-    const newuser = await userModel.create({
-        username,
-        email,
-        password: hash,
-    })
-     const token = jwt.sign({ email: email, id: newuser._id }, config.JWT_SECRET, { expiresIn: "7d" })
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "lax",
-        maxAge: 7 * 24 * 60 * 60 * 1000
-    })
-    res.status(201).json({
-        message: "user created successfull",
-        success: true,
-        data: newuser,
-    })
-
-}
-
    
 }
 
@@ -111,20 +86,7 @@ res.status(200).json({
 }
 
 export const logout=async(req:Request<{},{},ReqBody>,res:Response<Res>)=>{
-    const token=req.cookies.token
-    if(!token){
-        return res.status(400).json({
-            message:"User not loggedin",
-            success:false
-        })
-    }
-    const decoded=jwt.verify(token,config.JWT_SECRET)
-    if(!decoded){
-        res.status(401).json({
-            message:"Invalid token",
-            success:false
-        })
-    }
+
     res.clearCookie("token",{
         httpOnly:true,
         secure:false,
