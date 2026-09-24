@@ -5,14 +5,13 @@ import jwt, { JwtPayload } from "jsonwebtoken"
 
 interface Res{
     message:string,
-    success:boolean,
-    data?:object
+    success:boolean
 }
 
 export const isAdmin=async(req:Request,res:Response<Res>,next:NextFunction)=>{
   const token=req.cookies.token;
   if(!token){
-    return res.status(402).json({
+    return res.status(403).json({
         message:"User not loggedin",
         success:false
     })
